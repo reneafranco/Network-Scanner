@@ -1,0 +1,36 @@
+*{
+    -fx-background-color: #111111;
+
+}
+
+.button{
+    -fx-background-color: #07870b;
+    -fx-text-fill: #111111;
+    -fx-padding: 15px 15px 15px 15px;
+}
+
+.label{
+    -fx-font-size: 16;
+    -fxf-font-family: "Lucida Console";
+    -fx-text-fill: #07870b;
+
+}
+
+
+#sideMenuVBox{
+    -fx-alignment: center; /* Esta propiedad se aplica en el FXML o Java */
+    -fx-spacing: 50px;     /* Espaciado entre los elementos */
+}
+
+/* styles.css */
+#textArea {
+    -fx-text-fill: green;   /* Cambiar el color del texto a verde */
+    -fx-font-size: 16px;    /* Cambiar el tamaño del texto */
+}
+
+
+#textFieldEntry{
+    -fx-text-fill: white;
+    -fx-background-color: #07870b;
+}
+
