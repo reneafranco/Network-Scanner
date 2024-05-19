@@ -27,6 +27,9 @@ public class HelloController {
     private TextField textFieldEntry;
 
     @FXML
+    private TextField textFieldEntryPort;
+
+    @FXML
     private Label fastScanLabel;
 
     @FXML
@@ -132,6 +135,51 @@ public class HelloController {
             System.out.println("Nmap fast scan complete...");
 
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void AdvancedScan( ActionEvent event){
+
+        String targetIp = textFieldEntry.getText();
+
+        int portNumber = Integer.parseInt(textFieldEntryPort.getText());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String timestamp = dateFormat.format(new Date());
+
+        StringBuilder fileName = new StringBuilder();
+        fileName.append("advanceScan/")
+                .append(timestamp)
+                .append("_")
+                .append(targetIp)
+                .append("_nmap_output_AS.txt");
+        String nmapCommand = "nmap -A -p "+ portNumber + " " + targetIp;
+
+
+        try{
+            Process process = Runtime.getRuntime().exec(nmapCommand);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            File outputFile = new File(fileName.toString());
+            FileWriter writer = new FileWriter(outputFile);
+
+            String line;
+
+            while((line = reader.readLine()) != null){
+                System.out.println(line);
+                textArea.appendText(line + "\n");
+                writer.write(line + "\n");
+            }
+
+            writer.close();
+            process.waitFor();
+
+            System.out.println("Nmap scan complete...");
+
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
