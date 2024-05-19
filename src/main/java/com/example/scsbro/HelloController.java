@@ -3,7 +3,10 @@ package com.example.scsbro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import java.io.*;
@@ -19,6 +22,15 @@ public class HelloController {
 
     @FXML
     private TextArea textArea;
+
+    @FXML
+    private TextField textFieldEntry;
+
+    @FXML
+    private Label fastScanLabel;
+
+    @FXML
+    private Button fastScanButton;
 
 
     @FXML
@@ -83,13 +95,16 @@ public class HelloController {
     }
 
     @FXML
-    public void fastScan(ActionEvent event,  String targetIp){
+    public void fastScan(ActionEvent event){
+
+        String targetIp = textFieldEntry.getText();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String timestamp = dateFormat.format(new Date());
 
         StringBuilder fileName = new StringBuilder();
-        fileName.append(timestamp)
+        fileName.append("fastScan/")
+                .append(timestamp)
                 .append("_")
                 .append(targetIp)
                 .append("_nmap_output_FAST.txt");
