@@ -3,17 +3,19 @@ package com.example.scsbro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import java.io.*;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ResourceBundle;
 
-public class HelloController {
+
+
+public class HelloController implements Initializable {
 
 
 
@@ -28,6 +30,9 @@ public class HelloController {
 
     @FXML
     private TextField textFieldEntryPort;
+
+    @FXML
+    private TreeView<String> treeViewFile;
 
     @FXML
     private Label fastScanLabel;
@@ -98,7 +103,7 @@ public class HelloController {
     }
 
     @FXML
-    public void fastScan(ActionEvent event){
+    private void fastScan(ActionEvent event){
 
         String targetIp = textFieldEntry.getText();
 
@@ -140,7 +145,7 @@ public class HelloController {
     }
 
     @FXML
-    public void AdvancedScan( ActionEvent event){
+    private void AdvancedScan( ActionEvent event){
 
         String targetIp = textFieldEntry.getText();
 
@@ -184,10 +189,142 @@ public class HelloController {
         }
     }
 
+    @FXML
+    private void selectFile(){
+
+        TreeItem<String> item = treeViewFile.getSelectionModel().getSelectedItem();
+
+        if(item != null) {
+            System.out.println(item.getValue());
+        }
+    }
+
 
     public void altMethod(ActionEvent event){
         System.out.println("testing Alt Method from keyboard");
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if (treeViewFile == null) {
+            treeViewFile = new TreeView<>();
+        }
+
+
+        TreeItem<String> rootItem = new TreeItem<>("Files");
+        rootItem.setExpanded(true);
+
+        TreeItem<String> rootItemFastScan = new TreeItem<>("Fast Scan Files");
+        rootItemFastScan.setExpanded(false);
+
+        addFilesToTreeItem(rootItemFastScan, "fastScan");
+        rootItem.getChildren().add(rootItemFastScan);
+
+        TreeItem<String> rootItemAdvanceScan = new TreeItem<>("Advance Scan Files");
+        rootItemAdvanceScan.setExpanded(false);
+        addFilesToTreeItem(rootItemAdvanceScan, "advanceScan");
+        rootItem.getChildren().add(rootItemAdvanceScan);
+
+        treeViewFile.setRoot(rootItem);
+
+    }
+    private void addFilesToTreeItem(TreeItem<String> parentItem, String directory) {
+        File folder = new File(directory);
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                TreeItem<String> item = new TreeItem<>(file.getName());
+                parentItem.getChildren().add(item);
+                if (file.isDirectory()) {
+                    addSubItems(item, file.getPath());
+                }
+            }
+        }
+    }
+
+    private void addSubItems(TreeItem<String> parentItem, String directory) {
+        File folder = new File(directory);
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                TreeItem<String> item = new TreeItem<>(file.getName());
+                parentItem.getChildren().add(item);
+                if (file.isDirectory()) {
+                    addSubItems(item, file.getPath());
+                }
+            }
+        }
+
+//        TreeItem<File> rootItem = new TreeItem<>(new File("Files"));
+//        rootItem.setExpanded(true);
+//
+//        TreeItem<File> rootItemFastScan = new TreeItem<>(new File("Fast Scan Files"));
+//        rootItemFastScan.setExpanded(true);
+//
+//        File folderFastScan = new File("fastScan");
+//        addFilesToTreeItem(rootItemFastScan, new File("fastScan"));
+//        rootItem.getChildren().add(rootItemFastScan);
+//
+//
+//        TreeItem<File> rootItemAdvanceScan = new TreeItem<>(new File("Advance Scan Files"));
+//        rootItemAdvanceScan.setExpanded(true);
+//        File folderAdvanceScan = new File("advanceScan");
+//        addFilesToTreeItem(rootItemAdvanceScan, folderAdvanceScan);
+//        rootItem.getChildren().add(rootItemAdvanceScan);
+//
+//
+//        treeViewFile.setRoot(rootItem);
+//
+//        treeViewFile.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+//            if (newValue != null && newValue.getValue().isFile()) {
+//                displayFileContent(newValue.getValue());
+//            }
+//        });
+    }
+
+//    private void addFilesToTreeItem(TreeItem<File> parentItem, File directory) {
+//        File[] files = directory.listFiles();
+//        if (files != null) {
+//            for (File file : files) {
+//                TreeItem<File> item = new TreeItem<>(file);
+//                parentItem.getChildren().add(item);
+//                if (file.isDirectory()) {
+//                    addFilesToTreeItem(item, file);
+//                }
+//            }
+//        }
+//    }
+//
+//    private void addSubItems(TreeItem<File> parentItem, File directory) {
+//        File[] files = directory.listFiles();
+//        if (files != null) {
+//            for (File file : files) {
+//                TreeItem<File> item = new TreeItem<>(file);
+//                parentItem.getChildren().add(item);
+//                if (file.isDirectory()) {
+//                    addSubItems(item, file);
+//                }
+//            }
+//        }
+//    }
+//
+//    private void displayFileContent(File file) {
+//        StringBuilder content = new StringBuilder();
+//        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                content.append(line).append("\n");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        if (textArea != null) {
+//            textArea.setText(content.toString());
+//        } else {
+//            System.err.println("Error: TextArea is null");
+//        }
+//    }
 }

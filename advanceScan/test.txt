@@ -1,0 +1,2 @@
+This is te content of the test.txt file
+lorem ipsum

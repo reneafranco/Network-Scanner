@@ -59,13 +59,9 @@
       </VBox>
    </left>
    <right>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="498.0" prefWidth="145.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutY="13.0" prefHeight="514.0" prefWidth="166.0">
-               <children>
-                  <TreeView fx:id="treeViewFile" prefHeight="342.0" prefWidth="166.0" />
-               </children>
-            </VBox>
+            <TreeView fx:id="treeViewFile" onContextMenuRequested="#selectFile" onMouseClicked="#selectFile" prefHeight="305.0" prefWidth="173.0" />
          </children>
       </AnchorPane>
    </right>
