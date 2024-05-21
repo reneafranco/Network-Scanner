@@ -1,5 +1,7 @@
 package com.example.scsbro;
 
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -33,6 +37,9 @@ public class HelloController implements Initializable {
 
     @FXML
     private TreeView<String> treeViewFile;
+
+    @FXML
+    private HBox buttonBar;
 
     @FXML
     private Label fastScanLabel;
@@ -208,6 +215,7 @@ public class HelloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        //File Display Logic
         if (treeViewFile == null) {
             treeViewFile = new TreeView<>();
         }
@@ -228,6 +236,26 @@ public class HelloController implements Initializable {
         rootItem.getChildren().add(rootItemAdvanceScan);
 
         treeViewFile.setRoot(rootItem);
+
+        //Dark theme logic
+        ToggleSwitch buttonTheme = new ToggleSwitch();
+
+        SimpleBooleanProperty isOn = buttonTheme.switchOnProperty();
+        isOn.addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                buttonTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("Style.css").toString());
+                System.out.println("This is adding the CSSS");
+            } else {
+                buttonTheme.getScene().getRoot().getStylesheets().remove(getClass().getResource("Style.css").toString());
+                System.out.println("This is removing the css");
+            }
+        });
+
+
+        if(buttonBar == null){
+            buttonBar = new HBox();
+        }
+        buttonBar.getChildren().add(buttonTheme);
 
     }
     private void addFilesToTreeItem(TreeItem<String> parentItem, String directory) {
