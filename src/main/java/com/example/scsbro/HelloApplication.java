@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(getClass().getResource("light.css").toExternalForm());
+       // scene.getStylesheets().add(getClass().getResource("light.css").toExternalForm());
         String css = this.getClass().getResource("light.css").toExternalForm();
         scene.getStylesheets().add(css);
         stage.setTitle("Anonymous Scanner");

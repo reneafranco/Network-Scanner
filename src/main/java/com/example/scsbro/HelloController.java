@@ -41,11 +41,6 @@ public class HelloController implements Initializable {
     @FXML
     private HBox buttonBar;
 
-    @FXML
-    private Label fastScanLabel;
-
-    @FXML
-    private Button fastScanButton;
 
 
     @FXML
@@ -167,7 +162,7 @@ public class HelloController implements Initializable {
                 .append("_")
                 .append(targetIp)
                 .append("_nmap_output_AS.txt");
-        String nmapCommand = "nmap -A -p "+ portNumber + " " + targetIp;
+        String nmapCommand = "nmap -sV -p "+ portNumber + " " + targetIp;
 
 
         try{
@@ -244,10 +239,10 @@ public class HelloController implements Initializable {
         isOn.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 buttonTheme.getScene().getRoot().getStylesheets().add(getClass().getResource("Style.css").toString());
-                System.out.println("This is adding the CSSS");
+                System.out.println("This is adding the dark mode");
             } else {
                 buttonTheme.getScene().getRoot().getStylesheets().remove(getClass().getResource("Style.css").toString());
-                System.out.println("This is removing the css");
+                System.out.println("This is removing the dark mode");
             }
         });
 
