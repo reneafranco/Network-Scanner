@@ -108,6 +108,7 @@ public class HelloController implements Initializable {
 
     @FXML
     private void fastScan(ActionEvent event){
+        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
 
         String targetIp = textFieldEntry.getText();
 
@@ -122,7 +123,7 @@ public class HelloController implements Initializable {
                 .append("_nmap_output_FAST.txt");
         String nmapCommand = "nmap -F " + targetIp;
 
-        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
+
 
         try {
             Process process = Runtime.getRuntime().exec(nmapCommand);
@@ -154,6 +155,7 @@ public class HelloController implements Initializable {
 
     @FXML
     private void AdvancedScan( ActionEvent event){
+        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
 
         String targetIp = textFieldEntry.getText();
 
@@ -194,6 +196,8 @@ public class HelloController implements Initializable {
 
         }catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
         }
     }
 
