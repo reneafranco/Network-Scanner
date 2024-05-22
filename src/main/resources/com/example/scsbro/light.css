@@ -97,3 +97,6 @@
 #buttonBar {
     -fx-alignment: center;
 }
+#textArea {
+    -fx-font-size: 20px;
+}

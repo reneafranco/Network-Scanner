@@ -104,3 +104,7 @@
 #buttonBar{
 -fx-alignment: center;
 }
+
+.progress-bar .bar {
+    -fx-background-color: green; /* Color de la barra de progreso */
+}
