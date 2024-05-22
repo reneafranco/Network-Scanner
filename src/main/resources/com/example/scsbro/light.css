@@ -4,7 +4,7 @@
 
 .label {
     -fx-font-size: 16;
-    -fx-font-family: "Lucida Console";
+  /*  -fx-font-family: "Lucida Console";*/
     -fx-text-fill: #1e74c6;
 }
 

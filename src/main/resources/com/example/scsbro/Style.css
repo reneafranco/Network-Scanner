@@ -8,7 +8,7 @@
 
 .label{
     -fx-font-size: 16;
-    -fxf-font-family: "Lucida Console";
+    /*-fxf-font-family: "Lucida Console";*/
     -fx-text-fill: #07870b;
 
 }
