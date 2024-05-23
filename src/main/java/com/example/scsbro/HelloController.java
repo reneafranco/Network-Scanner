@@ -150,7 +150,6 @@ public class HelloController implements Initializable {
 
                 writer.close();
                 process.waitFor();
-                refreshTreeView();
                 System.out.println("Nmap fast scan complete...");
 
             } catch (Exception e) {
@@ -209,7 +208,7 @@ public class HelloController implements Initializable {
 
             writer.close();
             process.waitFor();
-            refreshTreeView();
+
             System.out.println("Nmap scan complete...");
 
         }catch (Exception e) {
@@ -229,6 +228,8 @@ public class HelloController implements Initializable {
         if(item != null) {
             System.out.println(item.getValue());
         }
+
+        refreshTreeView();
     }
 
 
@@ -387,7 +388,7 @@ public class HelloController implements Initializable {
 
                 writer.close();
                 process.waitFor();
-                refreshTreeView();
+
                 System.out.println("Nmap network scan complete...");
 
             } catch (Exception e) {
