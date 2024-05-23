@@ -110,9 +110,10 @@ public class HelloController implements Initializable {
 
     @FXML
     private void fastScan(ActionEvent event){
-        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
+
 
         String targetIp = textFieldEntry.getText();
+        textFieldEntry.clear();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String timestamp = dateFormat.format(new Date());
@@ -125,7 +126,9 @@ public class HelloController implements Initializable {
                 .append("_nmap_output_FAST.txt");
         String nmapCommand = "nmap -F " + targetIp;
 
+        //progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
 
+        Platform.runLater(() -> progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS));
         new Thread(() -> {
             try {
                 Process process = Runtime.getRuntime().exec(nmapCommand);
@@ -159,11 +162,19 @@ public class HelloController implements Initializable {
 
     @FXML
     private void AdvancedScan( ActionEvent event){
-        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
+
+
 
         String targetIp = textFieldEntry.getText();
 
+        textFieldEntry.clear();
+
+        //progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
+
+        Platform.runLater(() -> progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS));
+
         int portNumber = Integer.parseInt(textFieldEntryPort.getText());
+        textFieldEntryPort.clear();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String timestamp = dateFormat.format(new Date());
@@ -339,7 +350,8 @@ public class HelloController implements Initializable {
                 .append("_nmap_output.txt");
         String nmapCommand = "nmap -sn " + networkIp;
 
-        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS); // Configurar la barra de progreso como indeterminada
+        //progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS); // Configurar la barra de progreso como indeterminada
+        Platform.runLater(() -> progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS));
 
         new Thread(() -> {
             try {
