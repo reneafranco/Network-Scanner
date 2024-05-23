@@ -1,5 +1,6 @@
 package com.example.scsbro;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -367,7 +368,8 @@ public class HelloController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
+                //progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
+                Platform.runLater(() -> progressBar.setProgress(1.0));
             }
         }).start();
     }
