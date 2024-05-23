@@ -15,7 +15,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class HelloController implements Initializable {
@@ -315,6 +316,60 @@ public class HelloController implements Initializable {
 //                displayFileContent(newValue.getValue());
 //            }
 //        });
+    }
+
+
+
+    @FXML
+    private void ScanNetwork(ActionEvent event) {
+        String networkIp = textFieldEntry.getText();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String timestamp = dateFormat.format(new Date());
+
+        StringBuilder fileName = new StringBuilder();
+        fileName.append("networkScan/")
+                .append(timestamp)
+                .append("_")
+                .append(networkIp.replace("/", "_"))
+                .append("_nmap_output.txt");
+        String nmapCommand = "nmap -Pn " + networkIp;
+
+        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS); // Configurar la barra de progreso como indeterminada
+
+        new Thread(() -> {
+            try {
+                Process process = Runtime.getRuntime().exec(nmapCommand);
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+                File outputFile = new File(fileName.toString());
+                FileWriter writer = new FileWriter(outputFile);
+
+                String line;
+                Pattern ipPattern = Pattern.compile("\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b");
+
+                while ((line = reader.readLine()) != null) {
+                    Matcher matcher = ipPattern.matcher(line);
+                    if (matcher.find()) {
+                        String activeIp = matcher.group();
+                        System.out.println(activeIp);
+                        textArea.appendText(activeIp + "\n");
+                        writer.write(activeIp + "\n");
+                    }
+                }
+
+                writer.close();
+                process.waitFor();
+
+                System.out.println("Nmap network scan complete...");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
+            }
+        }).start();
     }
 
 //    private void addFilesToTreeItem(TreeItem<File> parentItem, File directory) {

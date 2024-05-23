@@ -10,10 +10,10 @@
 
 <AnchorPane prefHeight="505.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scsbro.HelloController">
    <children>
-      <Button layoutX="419.0" layoutY="444.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="73.0" text="Submit" />
-      <ProgressBar layoutX="86.0" layoutY="59.0" prefHeight="41.0" prefWidth="361.0" progress="0.0" />
+      <Button fx:id="ScanNetwork" layoutX="419.0" layoutY="444.0" mnemonicParsing="false" onAction="#ScanNetwork" prefHeight="41.0" prefWidth="73.0" text="Submit" />
+      <ProgressBar fx:id="progressBar" layoutX="86.0" layoutY="59.0" prefHeight="41.0" prefWidth="361.0" progress="0.0" />
       <TextField fx:id="textFieldEntry" layoutX="229.0" layoutY="383.0" prefHeight="41.0" prefWidth="218.0" />
-      <TextArea layoutX="26.0" layoutY="114.0" prefHeight="255.0" prefWidth="480.0" />
+      <TextArea fx:id="textArea" layoutX="26.0" layoutY="114.0" prefHeight="255.0" prefWidth="480.0" />
       <Label layoutX="112.0" layoutY="388.0" prefHeight="32.0" prefWidth="111.0" text="Enter the IP:">
          <font>
             <Font size="18.0" />
