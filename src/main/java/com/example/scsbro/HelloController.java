@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
 public class HelloController implements Initializable {
 
 
-
     @FXML
     private BorderPane borderPane;
 
@@ -45,6 +44,9 @@ public class HelloController implements Initializable {
     @FXML
     private ProgressBar progressBar;
 
+    private TreeItem<String> rootItem;
+    private TreeItem<String> rootItemFastScan;
+    private TreeItem<String> rootItemAdvanceScan;
 
 
     @FXML
@@ -155,6 +157,7 @@ public class HelloController implements Initializable {
                 e.printStackTrace();
             } finally {
                 //progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
+                refreshTreeView();
                 Platform.runLater(() -> progressBar.setProgress(1.0));
             }
         }).start();
@@ -212,6 +215,7 @@ public class HelloController implements Initializable {
         }catch (Exception e) {
             e.printStackTrace();
         }finally {
+            refreshTreeView();
             Platform.runLater(() -> progressBar.setProgress(1.0));
         }
         }).start();
@@ -233,32 +237,28 @@ public class HelloController implements Initializable {
     }
 
 
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        //File Display Logic
+        // File Display Logic
         if (treeViewFile == null) {
             treeViewFile = new TreeView<>();
         }
 
-
-        TreeItem<String> rootItem = new TreeItem<>("Files");
+        rootItem = new TreeItem<>("Files");
         rootItem.setExpanded(true);
 
-        TreeItem<String> rootItemFastScan = new TreeItem<>("Fast Scan Files");
+        rootItemFastScan = new TreeItem<>("Fast Scan Files"); // Inicialización de la variable rootItemFastScan
         rootItemFastScan.setExpanded(false);
-
         addFilesToTreeItem(rootItemFastScan, "fastScan");
         rootItem.getChildren().add(rootItemFastScan);
 
-        TreeItem<String> rootItemAdvanceScan = new TreeItem<>("Advance Scan Files");
+        rootItemAdvanceScan = new TreeItem<>("Advance Scan Files"); // Inicialización de la variable rootItemAdvanceScan
         rootItemAdvanceScan.setExpanded(false);
         addFilesToTreeItem(rootItemAdvanceScan, "advanceScan");
         rootItem.getChildren().add(rootItemAdvanceScan);
 
         treeViewFile.setRoot(rootItem);
 
-        //Dark theme logic
+        // Dark theme logic
         ToggleSwitch buttonTheme = new ToggleSwitch();
 
         SimpleBooleanProperty isOn = buttonTheme.switchOnProperty();
@@ -272,13 +272,21 @@ public class HelloController implements Initializable {
             }
         });
 
-
-        if(buttonBar == null){
+        if (buttonBar == null) {
             buttonBar = new HBox();
         }
         buttonBar.getChildren().add(buttonTheme);
-
     }
+
+    private void refreshTreeView() {
+        rootItemFastScan.getChildren().clear();
+        addFilesToTreeItem(rootItemFastScan, "fastScan");
+
+        rootItemAdvanceScan.getChildren().clear();
+        addFilesToTreeItem(rootItemAdvanceScan, "advanceScan");
+    }
+
+
     private void addFilesToTreeItem(TreeItem<String> parentItem, String directory) {
         File folder = new File(directory);
         File[] files = folder.listFiles();
@@ -337,7 +345,9 @@ public class HelloController implements Initializable {
 
     @FXML
     private void ScanNetwork(ActionEvent event) {
+
         String networkIp = textFieldEntry.getText();
+        textFieldEntry.clear();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String timestamp = dateFormat.format(new Date());
@@ -388,6 +398,8 @@ public class HelloController implements Initializable {
             }
         }).start();
     }
+
+
 
 //    private void addFilesToTreeItem(TreeItem<File> parentItem, File directory) {
 //        File[] files = directory.listFiles();
