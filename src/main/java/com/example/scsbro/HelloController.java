@@ -126,33 +126,35 @@ public class HelloController implements Initializable {
         String nmapCommand = "nmap -F " + targetIp;
 
 
+        new Thread(() -> {
+            try {
+                Process process = Runtime.getRuntime().exec(nmapCommand);
 
-        try {
-            Process process = Runtime.getRuntime().exec(nmapCommand);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                File outputFile = new File(fileName.toString());
+                FileWriter writer = new FileWriter(outputFile);
 
-            File outputFile = new File(fileName.toString());
-            FileWriter writer = new FileWriter(outputFile);
+                String line;
 
-            String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                    textArea.appendText(line + "\n");
+                    writer.write(line + "\n");
+                }
 
-            while((line = reader.readLine()) != null){
-                System.out.println(line);
-                textArea.appendText(line + "\n");
-                writer.write(line + "\n");
+                writer.close();
+                process.waitFor();
+
+                System.out.println("Nmap fast scan complete...");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                //progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
+                Platform.runLater(() -> progressBar.setProgress(1.0));
             }
-
-            writer.close();
-            process.waitFor();
-
-            System.out.println("Nmap fast scan complete...");
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
-        }
+        }).start();
     }
 
     @FXML
@@ -174,7 +176,7 @@ public class HelloController implements Initializable {
                 .append("_nmap_output_AS.txt");
         String nmapCommand = "nmap -sV -p "+ portNumber + " " + targetIp;
 
-
+        new Thread(() -> {
         try{
             Process process = Runtime.getRuntime().exec(nmapCommand);
 
@@ -199,8 +201,9 @@ public class HelloController implements Initializable {
         }catch (Exception e) {
             e.printStackTrace();
         }finally {
-            progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
+            Platform.runLater(() -> progressBar.setProgress(1.0));
         }
+        }).start();
     }
 
     @FXML
