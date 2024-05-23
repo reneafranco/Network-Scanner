@@ -150,14 +150,14 @@ public class HelloController implements Initializable {
 
                 writer.close();
                 process.waitFor();
-
+                refreshTreeView();
                 System.out.println("Nmap fast scan complete...");
 
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 //progressBar.setProgress(1.0); // Configurar la barra de progreso como determinada (completa) al finalizar
-                refreshTreeView();
+
                 Platform.runLater(() -> progressBar.setProgress(1.0));
             }
         }).start();
@@ -209,13 +209,13 @@ public class HelloController implements Initializable {
 
             writer.close();
             process.waitFor();
-
+            refreshTreeView();
             System.out.println("Nmap scan complete...");
 
         }catch (Exception e) {
             e.printStackTrace();
         }finally {
-            refreshTreeView();
+
             Platform.runLater(() -> progressBar.setProgress(1.0));
         }
         }).start();
@@ -387,7 +387,7 @@ public class HelloController implements Initializable {
 
                 writer.close();
                 process.waitFor();
-
+                refreshTreeView();
                 System.out.println("Nmap network scan complete...");
 
             } catch (Exception e) {
