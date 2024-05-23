@@ -333,7 +333,7 @@ public class HelloController implements Initializable {
                 .append("_")
                 .append(networkIp.replace("/", "_"))
                 .append("_nmap_output.txt");
-        String nmapCommand = "nmap -Pn " + networkIp;
+        String nmapCommand = "nmap -sn " + networkIp;
 
         progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS); // Configurar la barra de progreso como indeterminada
 
