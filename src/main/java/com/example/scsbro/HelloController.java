@@ -47,6 +47,15 @@ public class HelloController implements Initializable {
     @FXML
     private Label labelDisclaimer;
 
+    @FXML
+    private Label labelDisclaimerS;
+
+    @FXML
+    private Label labelDisclaimerT;
+
+    @FXML
+    private Label labelDisclaimerF;
+
     private TreeItem<String> rootItem;
     private TreeItem<String> rootItemFastScan;
     private TreeItem<String> rootItemAdvanceScan;
@@ -261,9 +270,16 @@ public class HelloController implements Initializable {
         rootItem.getChildren().add(rootItemAdvanceScan);
 
         treeViewFile.setRoot(rootItem);
-        if(labelDisclaimer != null) {
+
+        if(labelDisclaimer != null && labelDisclaimerS != null
+        && labelDisclaimerT != null && labelDisclaimerF !=null) {
             labelDisclaimer.setWrapText(true);
+            labelDisclaimerS.setWrapText(true);
+            labelDisclaimerT.setWrapText(true);
+            labelDisclaimerF.setWrapText(true);
         }
+
+
         // Dark theme logic
         ToggleSwitch buttonTheme = new ToggleSwitch();
 
