@@ -19,7 +19,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="92.0" layoutY="14.0" prefHeight="41.0" prefWidth="349.0" text="This is the Advance Scan Scence">
+      <Label layoutX="92.0" layoutY="14.0" prefHeight="41.0" prefWidth="349.0" text="This is the Advance Scan Mode">
          <font>
             <Font size="24.0" />
          </font>

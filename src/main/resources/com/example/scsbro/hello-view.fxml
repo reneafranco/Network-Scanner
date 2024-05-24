@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scsbro.HelloController">
    <top>
@@ -63,7 +65,14 @@
       </AnchorPane>
    </right>
    <center>
-      <AnchorPane prefHeight="505.0" prefWidth="532.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="505.0" prefWidth="532.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="56.0" layoutY="27.0" prefHeight="45.0" prefWidth="436.0" text="      Lorem ipsum dolor sit adipiscing ">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label fx:id="labelDisclaimer" layoutX="54.0" layoutY="72.0" prefHeight="362.0" prefWidth="418.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Maecenas sit amet libero eget quam pulvinar tincidunt ac eu orci. Quisque at dignissim lacus. Praesent ultricies risus nec nisi ultrices, ut fringilla lorem tempor. Nullam ac dui vitae sem blandit tincidunt. Sed suscipit, purus sit amet volutpat tristique, erat odio venenatis urna, eu posuere lorem mi eu massa. Integer ac mauris eu urna semper cursus. Vivamus at felis ac magna blandit malesuada. Fusce id libero vel nisi aliquet faucibus. Mauris eget sapien sapien. Quisque nec magna nec nulla da" />
+         </children></AnchorPane>
    </center>
    <bottom>
       <HBox fx:id="buttonBar" BorderPane.alignment="CENTER" />

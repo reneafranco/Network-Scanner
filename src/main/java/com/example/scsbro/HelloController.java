@@ -44,6 +44,9 @@ public class HelloController implements Initializable {
     @FXML
     private ProgressBar progressBar;
 
+    @FXML
+    private Label labelDisclaimer;
+
     private TreeItem<String> rootItem;
     private TreeItem<String> rootItemFastScan;
     private TreeItem<String> rootItemAdvanceScan;
@@ -258,7 +261,9 @@ public class HelloController implements Initializable {
         rootItem.getChildren().add(rootItemAdvanceScan);
 
         treeViewFile.setRoot(rootItem);
-
+        if(labelDisclaimer != null) {
+            labelDisclaimer.setWrapText(true);
+        }
         // Dark theme logic
         ToggleSwitch buttonTheme = new ToggleSwitch();
 
