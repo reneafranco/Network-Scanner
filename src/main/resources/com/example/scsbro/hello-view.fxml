@@ -67,11 +67,14 @@
    <center>
       <AnchorPane prefHeight="505.0" prefWidth="532.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="56.0" layoutY="27.0" prefHeight="45.0" prefWidth="436.0" text="      Lorem ipsum dolor sit adipiscing ">
+            <Label fx:id="labelDisclaimer" layoutX="71.0" layoutY="61.0" prefHeight="45.0" prefWidth="436.0" text="&quot;Guidelines for Ethical and Responsible Use of the Application&quot;">
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Label fx:id="labelDisclaimer" layoutX="54.0" layoutY="72.0" prefHeight="362.0" prefWidth="418.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Maecenas sit amet libero eget quam pulvinar tincidunt ac eu orci. Quisque at dignissim lacus. Praesent ultricies risus nec nisi ultrices, ut fringilla lorem tempor. Nullam ac dui vitae sem blandit tincidunt. Sed suscipit, purus sit amet volutpat tristique, erat odio venenatis urna, eu posuere lorem mi eu massa. Integer ac mauris eu urna semper cursus. Vivamus at felis ac magna blandit malesuada. Fusce id libero vel nisi aliquet faucibus. Mauris eget sapien sapien. Quisque nec magna nec nulla da" />
+            <Label fx:id="labelDisclaimer" layoutX="119.0" layoutY="126.0" prefHeight="73.0" prefWidth="340.0" text="1. Ethical Use: Use the application in an ethical and responsible manner." />
+            <Label fx:id="labelDisclaimer" layoutX="119.0" layoutY="193.0" prefHeight="73.0" prefWidth="340.0" text="2. Risks: Recognize the security risks associated with network scanning." />
+            <Label fx:id="labelDisclaimer" layoutX="119.0" layoutY="253.0" prefHeight="73.0" prefWidth="340.0" text="3. Consent: Obtain consent before scanning any network." />
+            <Label fx:id="labelDisclaimer" layoutX="119.0" layoutY="326.0" prefHeight="60.0" prefWidth="340.0" text=" 4. Legal Compliance: Comply with all applicable laws and regulations." />
          </children></AnchorPane>
    </center>
    <bottom>
