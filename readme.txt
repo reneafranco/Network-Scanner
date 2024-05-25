@@ -30,7 +30,7 @@ Steps
 Clone the repository:
 sh
 Copy code
-git clone https://github.com/example/network-scanner.git
+git clone https://github.com/reneafranco/Network-Scanner.git
 Navigate to the project directory:
 sh
 Copy code
