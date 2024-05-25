@@ -74,3 +74,15 @@ To toggle between light and dark modes:
 
 Use the toggle switch located in the bottom bar.
 The application's theme will change accordingly.
+
+Disclaimer
+The authors of this application are not responsible for any misuse of the software. Users are advised to use it responsibly and in compliance with local laws and regulations. By using this application, users agree to these terms and conditions.
+
+Requirements
+Operating System: Windows, macOS, Linux
+Java Version: JDK 8 or higher
+Nmap: Installed and available in system PATH
+Common Issues
+Progress Bar Stuck: Ensure the Nmap command is executed correctly and check the console for errors.
+File Not Found: Verify the file paths and permissions.
+UI Freezes: Long-running Nmap commands may cause the UI
