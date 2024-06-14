@@ -19,9 +19,11 @@ public class HelloApplication extends Application {
         stage.setTitle("Anonymous Scanner");
         stage.setScene(scene);
         stage.show();
-    }
+
+  }
 
     public static void main(String[] args) {
-        launch();
+        launch();      
     }
+    
 }
